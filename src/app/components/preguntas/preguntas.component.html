@@ -1,0 +1,21 @@
+<form (ngSubmit)="comprobar(forma)" #forma="ngForm">
+  <div class="form-group">
+    <h1>Cuestionario</h1>
+    <h4 class="mb-3">{{this.pregunta}}</h4>
+    <div *ngFor="let res of respuestas;let i = index" class="ml-2 mt-2 custom-control custom-radio">
+      <input ngModel type="radio" id={{i}} name="customRadio" class="custom-control-input" [value]="res">
+      <label class="custom-control-label" for={{i}}>{{res.cuidad}}</label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Responder</button>
+  <button (click)="limpiar()" type="reset" class="btn btn-success ml-2">Limpiar</button>
+</form>
+
+
+<div *ngIf="this.respuestaCorrecta && this.respuestaSeleccionada" class="mt-2 alert alert-success" role="alert">
+  Respuesta Correcta
+</div>
+<div *ngIf="!this.respuestaCorrecta && this.respuestaSeleccionada" class="mt-2 alert alert-danger" role="alert">
+  Respuesta Incorrecta
+</div>
